@@ -1,0 +1,10 @@
+.wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-height: 16px;
+  max-height: 32px;
+  color: black;
+  -webkit-box-orient: vertical
+}

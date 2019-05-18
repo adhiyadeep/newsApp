@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{api.newsDetails.author}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+
+    <ion-card-content>
+      <a style="color: black; font-size: 10px">{{api.newsDetails.content}}</a>
+    </ion-card-content>
+
+    <ion-card-subtitle style="font-size: 10px; text-align: center; top: 5px">
+      <a style="color: black">  {{api.newsDetails.publishedAt | date}} </a>
+    </ion-card-subtitle>
+
+    <ion-card-content>
+      <img [src]="api.newsDetails.urlToImage"/>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-subtitle style="font-size: 10px; text-align: center; top: 5px">
+      Description
+    </ion-card-subtitle>
+    <ion-card-content>
+      <a style="color: black; font-size: 11px"> {{api.newsDetails.description}} </a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+          <ion-card padding class="registerCard">
+            <ion-item>
+              <ion-input name="fname" type="text" placeholder="John" ngModel
+                         required maxlength="10" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input name="lname" type="text" placeholder="Symond" ngModel
+                         required maxlength="15"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="john@gmail.com" ngModel
+                         required maxlength="45"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" ngModel
+                         required minlength="4" maxlength="8"></ion-input>
+            </ion-item>
+
+            <div  style="text-align: center" padding class="d-flex flex-column" justify-content-center align-items-center>
+              <ion-button  size="large" type="submit" [disabled]="form.invalid">Register</ion-button>
+              <div text-center class="or-text">OR</div>
+              <ion-button style="text-align: center" size="large" routerLink="/login" routerDirection="root">Login</ion-button>
+              <div padding>
+              </div>
+            </div>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+
+</ion-content>

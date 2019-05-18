@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     News
+    </ion-title>
+
+    <ion-buttons slot="end" (click)="editProfile()">
+      <ion-icon style="zoom: 2" name="create"></ion-icon>
+    </ion-buttons>
+
+    <ion-buttons slot="end"  (click)="logout()">
+      <ion-icon style="zoom: 2" name="log-out"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-card *ngFor="let news of newsData" >
+    <ion-card-content>
+      <ion-row (click)="api.newsDetails = news" routerLink="/newsdetails" routerDirection="forward" >
+        <ion-col size="8">
+          <a style="color: black" class="wrap">{{news.content}}</a>
+        </ion-col>
+        <ion-col size="4">
+          <img [src]="news.urlToImage"/>
+        </ion-col>
+      </ion-row>
+      <a style="margin-left: 5px">Author : {{news.author}}</a>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DataservicesService} from '../dataservices.service';
 import {CommonService} from '../common.service';
 import {Storage} from '@ionic/storage';
+import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,43 @@ import {Storage} from '@ionic/storage';
 export class LoginPage implements OnInit {
 
   loginResponse: any;
+    lastTimeBackPress = 0;
+    timePeriodToExit = 2000;
 
   constructor(private router: Router,
               private api: DataservicesService,
               private common: CommonService,
-              public storage: Storage) {
+              public storage: Storage,
+              private platform: Platform) {
+
+      this.backButtonEvent();
   }
 
   ngOnInit() {
   }
 
-  async login(form) {
+
+    // active hardware back button
+    backButtonEvent() {
+        this.platform.backButton.subscribe(async () => {
+
+            // close modal
+            // close side menua
+            if (this.router.url === '/login') {
+                if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+                    // this.platform.exitApp(); // Exit from app
+                    navigator['app'].exitApp(); // work in ionic 4
+
+                } else {
+                    this.common.showToast("Press agin to exit app");
+                    this.lastTimeBackPress = new Date().getTime();
+                }
+            }
+        });
+    }
+
+
+    async login(form) {
     const loginFormData = new FormData();
     loginFormData.append('email', form.value.email);
     loginFormData.append('password',  form.value.password);
@@ -44,7 +71,6 @@ export class LoginPage implements OnInit {
             this.common.showToast(JSON.parse(this.loginResponse).status_message);
         }
 
-        // this.router.navigateByUrl('/home');
         }, err => {
           console.log(err)
         }

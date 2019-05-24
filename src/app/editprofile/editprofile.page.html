@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Edit Profile</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+
 
 <ion-content padding>
   <ion-row>
@@ -14,10 +20,9 @@
     <img src="{{myphoto}}">
   </div>
 
-  <ion-button  expand="full"  (click)="ImageUpload()" color="primary">Upload Image</ion-button>
+  <ion-button  style="padding-left: 15px; padding-right: 15px" expand="full"  (click)="ImageUpload()" color="primary">Upload Image</ion-button>
 
   <ion-card>
-
 
     <ion-row *ngIf="photo">
 
@@ -57,8 +62,6 @@
       <ion-col size="8">  <ion-input  [(ngModel)]="email"></ion-input> </ion-col>
 
     </ion-row>
-
-
 
       <ion-button  expand="full"  (click)="updateProfile()" color="primary">Update Profile</ion-button>
 
